@@ -35,6 +35,9 @@
 </script>
 
 <style lang="scss">
+body {
+    background-color: #F5F5F5;
+}
 .container {
     display: flex;
 }
