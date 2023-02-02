@@ -22,6 +22,7 @@
       </div>
     </div>
     <div class="home__doughnut">
+      <Doughnut :data="douData" :options="douOptions" />
     </div>
     <div class="home__bar">
       <Bar :data="data" :options="options" />
@@ -94,8 +95,21 @@
     ]
   });
   
-  let douData = reactive({});
-  let douOptions = reactive({});
+  let douData = ref<Refs>({
+    labels: [''],
+    datasets: [
+      {
+        label: null,
+        backgroundColor: [''],
+        data: [0] 
+      },
+    ]
+  });
+
+  const douOptions = {
+    responsive: true,
+    maintainAspectRatio: false
+  };
 
   onMounted(async () => {
     const request = {
@@ -123,19 +137,15 @@
       ]
     }
 
-    douData = {
+    douData.value = {
       labels: labels,
       datasets: [
         {
+          label: null,
           backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
           data: dataIssue
         }
       ]
-    }
-
-    douOptions = {
-      responsive: true,
-      maintainAspectRatio: false
     }
   })
 
