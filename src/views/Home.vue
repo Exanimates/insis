@@ -22,7 +22,6 @@
       </div>
     </div>
     <div class="home__doughnut">
-      <Doughnut :data="douData" :options="douOptions" />
     </div>
     <div class="home__bar">
       <Bar :data="data" :options="options" />
@@ -31,6 +30,16 @@
 </template>
 
 <script lang="ts" setup>
+  interface Dataset {
+    label: string | null,
+    backgroundColor: string[],
+    data: number[]
+  }
+
+  interface Refs {
+    labels: string[];
+    datasets: Dataset[];
+  }
   import { Bar, Doughnut } from 'vue-chartjs'
   import { onMounted, ref, reactive } from 'vue'
   import api from '../api/api'
@@ -56,23 +65,41 @@
     police: 0
   });
 
+  const labels = [
+      'ФМС',
+      'ГУВД или МВД',
+      'УВД или ОВД',
+      'Отделение полиции'
+  ];
+  
+  const dataIssue: number[] = [];
+  const options = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false
+        }
+      }
+  }
+
+  let data = ref<Refs>({
+    labels: [''],
+    datasets: [
+      {
+        label: null,
+        backgroundColor: [''],
+        data: [0] 
+      },
+    ]
+  });
+  
+  let douData = reactive({});
+  let douOptions = reactive({});
+
   onMounted(async () => {
     const request = {
-      "query": 'И',
-      "filters": [
-          {
-              "type": division.Fms
-          },
-          {
-              "type": division.GuvdOrMvd
-          },
-          {
-              "type": division.UvdOrOvd
-          },
-          {
-              "type": division.Police
-          },
-      ]
+      "query": 'Иван',
     };
     const result = await api.query(request);
 
@@ -81,50 +108,38 @@
     issueBy.uvdOrOvd = result.suggestions.filter(elem => elem.data.type == division.UvdOrOvd.toString()).length
     issueBy.police = result.suggestions.filter(elem => elem.data.type == division.Police.toString()).length
 
+    for (var issue of Object.values(issueBy)) {
+        dataIssue.push(issue);
+    }
+    
+    data.value = {
+      labels: labels,
+      datasets: [
+        {
+          label: '',
+          backgroundColor: ['#00CB9A'],
+          data: dataIssue
+        }
+      ]
+    }
+
+    douData = {
+      labels: labels,
+      datasets: [
+        {
+          backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
+          data: dataIssue
+        }
+      ]
+    }
+
+    douOptions = {
+      responsive: true,
+      maintainAspectRatio: false
+    }
   })
-  const data = {
-    labels: [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December'
-    ],
-    datasets: [
-      {
-        label: 'Data One',
-        backgroundColor: '#00CB9A',
-        data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11]
-      }
-    ]
-  }
 
-  const options = {
-    responsive: true,
-    maintainAspectRatio: false
-  }
 
-  const douData = {
-    labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
-    datasets: [
-      {
-        backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
-        data: [40, 20, 80, 10]
-      }
-    ]
-  }
-
-  const douOptions = {
-    responsive: true,
-    maintainAspectRatio: false
-  }
 </script>
 
 <style scoped lang="scss">
