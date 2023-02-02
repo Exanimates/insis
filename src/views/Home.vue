@@ -3,26 +3,26 @@
     <div class="home__general">
       <h2>Общие данные</h2>
       <div class="home__nav">
-        <div class="home__fms">
+        <div class="home__elem">
           <div>{{ issueBy.fmsLen }}</div>
           <div>подразделение ФМС</div>
         </div>
-        <div class="home__guvdOrMvd">
+        <div class="home__elem">
           <div>{{ issueBy.guvdOrMvd }}</div>
           <div>подразделений ГУВД или МВД региона</div>
         </div>
-        <div class="home__uvdOrOvd">
+        <div class="home__elem">
           <div>{{ issueBy.uvdOrOvd }}</div>
           <div>подразделений УВД или ОВД района или города</div>
         </div>
-        <div class="home__police">
+        <div class="home__elem">
           <div>{{ issueBy.police }}</div>
           <div>подразделений отделения полиции</div>
         </div>
       </div>
     </div>
     <div class="home__doughnut">
-      <Doughnut width="200px" :data="douData" :options="douOptions" />
+      <Doughnut :data="douData" :options="douOptions" />
     </div>
     <div class="home__bar">
       <Bar :data="data" :options="options" />
@@ -57,8 +57,6 @@
   });
 
   onMounted(async () => {
-
-    debugger;
     const request = {
       "query": 'И',
       "filters": [
@@ -134,22 +132,25 @@
     display: grid;
     gap: 20px;
 
-    grid-template-columns: repeat(auto-fit, minmax(840px, 1fr));
-    grid-template-rows: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: 75% 25%;
+    grid-template-rows: 1.5fr 1.5fr;
 
     grid-template-areas:
     "gen dou"
-    "bar dou";
+    "bar .";
+
+    height: 600px;
 
     &__general {
+      grid-area: gen;
+
       background: #EBEBEB;
       margin-top: 40px;
-      grid-area: gen;
+      padding: 20px;
     }
     &__doughnut {
       grid-area: dou;
-      
-      width: 300px;
+      width: 400px;
     }
     &__bar {
       grid-area: bar;
@@ -159,6 +160,9 @@
       flex-wrap: wrap;
 
       justify-content: space-between;
+    }
+    &__elem {
+      margin-left: 10px;
     }
  }
 </style>

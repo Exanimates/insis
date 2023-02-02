@@ -43,6 +43,7 @@ body {
 }
 .router {
     width: 100%;
+    overflow: hidden;
 }
 .active {
   background-color: rgb(167, 167, 167);
