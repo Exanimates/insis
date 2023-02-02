@@ -176,6 +176,7 @@
     &__doughnut {
       grid-area: dou;
       width: 400px;
+      margin-top: 30px;
     }
     &__bar {
       grid-area: bar;

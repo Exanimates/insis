@@ -14,11 +14,13 @@
                     <v-divider></v-divider>
             
                     <v-list density="compact" nav>
-                        <router-link to="/" active-class="active">Главная</router-link>
-                        <router-link to="/fms" active-class="active">ФМС</router-link>
-                        <router-link to="/guvdOrMvd" active-class="active">ГУВД или МВД</router-link>
-                        <router-link to="/uvdOrOvd" active-class="active">УВД или ОВД</router-link>
-                        <router-link to="/police" active-class="active">Отделение полиции</router-link >
+                        <div class="navigation">
+                            <router-link to="/" active-class="active">Главная</router-link>
+                            <router-link to="/fms" active-class="active">ФМС</router-link>
+                            <router-link to="/guvdOrMvd" active-class="active">ГУВД или МВД</router-link>
+                            <router-link to="/uvdOrOvd" active-class="active">УВД или ОВД</router-link>
+                            <router-link to="/police" active-class="active">Отделение полиции</router-link >
+                        </div>
                     </v-list>
                 </v-navigation-drawer>
         
@@ -49,5 +51,9 @@ body {
   background-color: rgb(167, 167, 167);
   cursor: pointer;
   transition: .5s;
+}
+.navigation {
+    display: flex;
+    flex-direction: column;
 }
 </style>
