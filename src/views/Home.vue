@@ -6,18 +6,30 @@
         <div class="home__elem">
           <div>{{ issueBy.fmsLen }}</div>
           <div>подразделение ФМС</div>
+          <div>
+            <router-link to="/fms" active-class="active">Перейти</router-link>
+          </div>
         </div>
         <div class="home__elem">
           <div>{{ issueBy.guvdOrMvd }}</div>
           <div>подразделений ГУВД или МВД региона</div>
+          <div>
+            <router-link to="/guvdOrMvd" active-class="active">Перейти</router-link>
+          </div>
         </div>
         <div class="home__elem">
           <div>{{ issueBy.uvdOrOvd }}</div>
           <div>подразделений УВД или ОВД района или города</div>
+          <div>
+            <router-link to="/uvdOrOvd" active-class="active">Перейти</router-link>
+          </div>
         </div>
         <div class="home__elem">
           <div>{{ issueBy.police }}</div>
           <div>подразделений отделения полиции</div>
+          <div>
+            <router-link to="/police" active-class="active">Перейти</router-link >
+          </div>
         </div>
       </div>
     </div>
