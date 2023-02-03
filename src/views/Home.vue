@@ -59,6 +59,7 @@
     LinearScale,
     ArcElement
   } from 'chart.js'
+import { Aggregate } from '@/types/apiTypes'
 
   ChartJS.register(ArcElement, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
@@ -114,12 +115,16 @@
     maintainAspectRatio: false
   };
 
-  onMounted(async () => {
+  const loadData = async () => {
     const request = {
       "query": 'Иван',
     };
     const result = await api.query(request);
 
+    return result;
+  }
+
+  const calculateResultLen = (result: Aggregate) => {
     const resultLenArr = []
     const numberTypes = Object.values(division).filter(divis => typeof divis === 'number');
     for (const numberType of numberTypes) {
@@ -136,6 +141,13 @@
     for (var issue of Object.values(issueBy)) {
         dataIssue.push(issue);
     }
+
+    return dataIssue;
+  }
+
+  onMounted(async () => {
+    const result = await loadData()
+    const dataIssue = calculateResultLen(result)
     
     data.value = {
       labels: labels,
