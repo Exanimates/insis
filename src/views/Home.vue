@@ -179,10 +179,16 @@
     &__doughnut {
       grid-area: dou;
       width: 400px;
-      margin-top: 30px;
+      margin-top: 40px;
+
+      background-color: white;
+      padding: 10px;
     }
     &__bar {
       grid-area: bar;
+
+      background-color: white;
+      padding: 10px;
     }
     &__nav {
       display: flex;
