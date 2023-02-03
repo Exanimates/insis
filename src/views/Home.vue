@@ -115,9 +115,9 @@ import { Aggregate } from '@/types/apiTypes'
     maintainAspectRatio: false
   };
 
-  const loadData = async () => {
+  const loadData = async (query: string) => {
     const request = {
-      "query": 'Иван',
+      "query": query,
     };
     const result = await api.query(request);
 
@@ -145,10 +145,8 @@ import { Aggregate } from '@/types/apiTypes'
     return dataIssue;
   }
 
-  onMounted(async () => {
-    const result = await loadData()
-    const dataIssue = calculateResultLen(result)
-    
+  const chartDataSet = (dataIssue: number[]) => {
+        
     data.value = {
       labels: labels,
       datasets: [
@@ -170,6 +168,12 @@ import { Aggregate } from '@/types/apiTypes'
         }
       ]
     }
+  }
+
+  onMounted(async () => {
+    const result = await loadData('Иван')
+    const dataIssue = calculateResultLen(result)
+    chartDataSet(dataIssue)
   })
 
 
