@@ -4,30 +4,30 @@
       <h2>Общие данные</h2>
       <div class="home__nav">
         <div class="home__elem">
-          <div>{{ issueBy.fmsLen }}</div>
+          <div class="home__count">{{ issueBy.fmsLen }}</div>
           <div>подразделение ФМС</div>
-          <div>
+          <div class="home__link">
             <router-link to="/fms" active-class="active">Перейти</router-link>
           </div>
         </div>
         <div class="home__elem">
-          <div>{{ issueBy.guvdOrMvd }}</div>
+          <div class="home__count">{{ issueBy.guvdOrMvd }}</div>
           <div>подразделений ГУВД или МВД региона</div>
-          <div>
+          <div class="home__link">
             <router-link to="/guvdOrMvd" active-class="active">Перейти</router-link>
           </div>
         </div>
         <div class="home__elem">
-          <div>{{ issueBy.uvdOrOvd }}</div>
+          <div class="home__count">{{ issueBy.uvdOrOvd }}</div>
           <div>подразделений УВД или ОВД района или города</div>
-          <div>
+          <div class="home__link">
             <router-link to="/uvdOrOvd" active-class="active">Перейти</router-link>
           </div>
         </div>
         <div class="home__elem">
-          <div>{{ issueBy.police }}</div>
+          <div class="home__count">{{ issueBy.police }}</div>
           <div>подразделений отделения полиции</div>
-          <div>
+          <div class="home__link">
             <router-link to="/police" active-class="active">Перейти</router-link >
           </div>
         </div>
@@ -192,6 +192,15 @@
     }
     &__elem {
       margin-left: 10px;
+    }
+
+    &__count {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    &__link {
+      margin-top: 20px;
     }
  }
 </style>

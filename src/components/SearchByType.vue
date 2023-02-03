@@ -1,9 +1,14 @@
 <template>
-  <div class="fms">
-    <v-text-field
-      placeholder="Поиск по названию и коду подразделения"
-      @input="event => handleInputDeb(event.target.value)"
+  <div class="searchByType">
+    <div class="searchByType__input">
+      <div>Поиск</div>
+      <v-text-field
+        :width="500"
+        class="searchByType__textField"
+        placeholder="Поиск по названию и коду подразделения"
+        @input="event => handleInputDeb(event.target.value)"
     ></v-text-field>
+    </div>
     <EasyDataTable
       buttons-pagination
       :headers="headers"
@@ -60,3 +65,19 @@
   
   const handleInputDeb = _debounce(handleInput, 1000) 
 </script>
+<style lang="scss">
+.searchByType {
+  &__input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 800px;
+    margin-left: 5px;
+  }
+  &__textField {
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+}
+</style>
