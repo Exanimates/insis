@@ -2,7 +2,7 @@
   <div class="fms">
     <v-text-field
       placeholder="Поиск по названию и коду подразделения"
-      @input="event => handleInput(event.target.value)"
+      @input="event => handleInputDeb(event.target.value)"
     ></v-text-field>
     <EasyDataTable
       buttons-pagination
@@ -17,6 +17,8 @@
   import api from '../api/api'
   import { Suggestions } from '@/types/apiTypes'
   import { divisDict } from '@/dict/suggestionsDict'
+  import _debounce from 'lodash/debounce';
+
 
   const props = defineProps({
     type: {
@@ -54,5 +56,7 @@
     for (const issue of issueBy.value) {
       issue.data.type = divisDict[props.type]
     }
-  } 
+  }
+  
+  const handleInputDeb = _debounce(handleInput, 1000) 
 </script>
