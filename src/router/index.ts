@@ -1,26 +1,31 @@
 // Composables
 import { createRouter, createWebHistory } from 'vue-router'
+import Home from '@/views/Home.vue'
+import Fms from '@/views/Fms.vue'
+import GuvdOrMvd from '@/views/GuvdOrMvd.vue'
+import UvdOrOvd from '@/views/UvdOrOvd.vue'
+import Police from '@/views/Police.vue';
 
 const routes = [
   {
     path: '/',
-    component: () => import('@/views/Home.vue'),
+    component: Home,
   },
   {
     path: '/fms',
-    component: () => import('@/views/Fms.vue'),
+    component: Fms,
   },
   {
     path: '/guvdOrMvd',
-    component: () => import('@/views/GuvdOrMvd.vue'),
+    component: GuvdOrMvd,
   },
   {
     path: '/uvdOrOvd',
-    component: () => import('@/views/UvdOrOvd.vue'),
+    component: UvdOrOvd,
   },
   {
     path: '/police',
-    component: () => import('@/views/Police.vue'),
+    component: Police,
   },
 ]
 
