@@ -62,7 +62,7 @@
 
   ChartJS.register(ArcElement, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
-  const issueBy = reactive({
+  const issueBy: { [index: string]: number; } = reactive({
     fmsLen: 0,
     guvdOrMvd: 0,
     uvdOrOvd: 0,
@@ -120,10 +120,18 @@
     };
     const result = await api.query(request);
 
-    issueBy.fmsLen = result.suggestions.filter(elem => elem.data.type == division.Fms.toString()).length
-    issueBy.guvdOrMvd = result.suggestions.filter(elem => elem.data.type == division.GuvdOrMvd.toString()).length
-    issueBy.uvdOrOvd = result.suggestions.filter(elem => elem.data.type == division.UvdOrOvd.toString()).length
-    issueBy.police = result.suggestions.filter(elem => elem.data.type == division.Police.toString()).length
+    const resultLenArr = []
+    const numberTypes = Object.values(division).filter(divis => typeof divis === 'number');
+    for (const numberType of numberTypes) {
+      let len = result.suggestions.filter(elem => elem.data.type === numberType.toString()).length;
+      resultLenArr.push(len);
+    }
+
+    let i = 0;
+    for (let key in issueBy) {
+      issueBy[key] = resultLenArr[i];
+      i++;
+    }
 
     for (var issue of Object.values(issueBy)) {
         dataIssue.push(issue);
