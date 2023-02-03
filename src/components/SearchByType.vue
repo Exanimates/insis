@@ -1,7 +1,7 @@
 <template>
   <div class="fms">
     <v-text-field
-      placeholder="Placeholder"
+      placeholder="Поиск по названию и коду подразделения"
       @input="event => handleInput(event.target.value)"
     ></v-text-field>
     <EasyDataTable
