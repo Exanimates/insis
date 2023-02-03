@@ -16,9 +16,14 @@
   import { ref } from 'vue'
   import api from '../api/api'
   import { Suggestions } from '@/types/apiTypes'
+  import { divisDict } from '@/dict/suggestionsDict'
 
   const props = defineProps({
-    type: Number
+    type: {
+      type: Number,
+      required: true,
+      default: 0
+    }
   })
 
   const headers = [
@@ -43,7 +48,11 @@
       ]
     };
 
-    const res = await api.query(request);
-    issueBy.value = res.suggestions;
+    const result = await api.query(request);
+    issueBy.value = result.suggestions;
+
+    for (const issue of issueBy.value) {
+      issue.data.type = divisDict[props.type]
+    }
   } 
 </script>
