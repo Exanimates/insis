@@ -43,20 +43,11 @@
 </template>
 
 <script lang="ts" setup>
-  interface Dataset {
-    label: string | null,
-    backgroundColor: string[],
-    data: number[]
-  }
-
-  interface Refs {
-    labels: string[];
-    datasets: Dataset[];
-  }
   import { Bar, Doughnut } from 'vue-chartjs'
   import { onMounted, ref, reactive } from 'vue'
   import api from '../api/api'
-  import division from '../types/divisions'
+  import division from '../enums/divisions'
+  import { Refs } from '@/types/chartJsTypes'
 
   import {
     Chart as ChartJS,
