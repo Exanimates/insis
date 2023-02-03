@@ -62,7 +62,7 @@
 
   ChartJS.register(ArcElement, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
-  const issueBy: { [index: string]: number; } = reactive({
+  const issueBy: { [len: string]: number; } = reactive({
     fmsLen: 0,
     guvdOrMvd: 0,
     uvdOrOvd: 0,
