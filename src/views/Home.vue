@@ -183,15 +183,14 @@ import { Aggregate } from '@/types/apiTypes'
  .home {
     display: grid;
     gap: 20px;
+    height: 100%;
+    width: 100%;
 
-    grid-template-columns: 75% 25%;
-    grid-template-rows: 1.5fr 1.5fr;
+    grid-template-columns: 1fr 1fr;
 
     grid-template-areas:
     "gen dou"
     "bar .";
-
-    height: 600px;
 
     &__general {
       grid-area: gen;
@@ -202,7 +201,6 @@ import { Aggregate } from '@/types/apiTypes'
     }
     &__doughnut {
       grid-area: dou;
-      width: 400px;
       margin-top: 40px;
 
       background-color: white;
@@ -233,4 +231,17 @@ import { Aggregate } from '@/types/apiTypes'
       margin-top: 20px;
     }
  }
+
+ @media screen and (max-width: 1400px) {
+      .home {
+        overflow: auto;
+        grid-template-areas:
+        "gen"
+        "dou"
+        "bar";
+
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto 1fr;
+      }
+}
 </style>
